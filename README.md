@@ -1,4 +1,4 @@
-# «Disaster Recovery. FHRP и Keepalived» - Pirogov Anton
+# «Кеширование Redis/memcached» - Pirogov Anton
 
 ###     Задание 1 
 
