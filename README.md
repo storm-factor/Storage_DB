@@ -1,12 +1,8 @@
-# «Кеширование Redis/memcached» - Pirogov Anton
+7# «ELK» - Pirogov Anton
 
 ###     Задание 1 
 
-1. Уменьшение задержек при передаче контента
-2. Увеличение производительности ПО 
-3. Масштабирование 
-4. Позволяет избежать избыточного выделения ресурсов БД
-5. Обеспечение надежности при изменении формата хранилища
+![ex1](./screenshots/ex1.png)
 
 ###     Задание 2
 
@@ -14,12 +10,12 @@
 
 ###     Задание 3
 
-![ex3](./screenshots/ex3.png)
+1. Как логи собрать в с nginx в logstash, не совсем понимаю. Как направить логи с nginx который стоит на хосте, в logstash который поднят в docker. 
+   В nginx.conf сделана такая запись - access_log syslog:server=logstash:5140, Как он будет направлять туда логи если nginx не знает что такое logstash
+   Возможно оно будет работать если прописать там ip контейнера, но это бред и почему высвечивается данное сообщение:
 
-###     Задание 4
-
-![ex4](./screenshots/ex4.png)
-
-###     Задание 5
-
-![ex5](./screenshots/ex5.png)
+![ex3-1](./screenshots/qw1.png)
+![ex3-2](./screenshots/qw2.png)
+![ex3-3](./screenshots/qw3.png)
+![ex3-4](./screenshots/qw4.png)
+[compose.yml](./files/compose.yml)

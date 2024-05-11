@@ -1,0 +1,61 @@
+version: '3.3'
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.17.2
+    container_name: elasticsearch
+#    volumes:
+#      - ./elk-config/elasticsearch:/usr/share/elasticsearch/config
+    environment:
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      ELASTIC_USERNAME: "elastic"
+      ELASTIC_PASSWORD: "pirogov1234"
+      discovery.type: single-node
+      cluster.name: my-elk-cluster
+      network.host: 0.0.0.0
+#      bootstrap.memory_lock: true
+#      xpack.licensing.type: basic
+#    command: bash -c "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config && chmod -R 755 /usr/share/elasticsearch/config && elasticsearch"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - elk
+
+  logstash:
+    image: logstash:7.17.2
+    container_name: logstash
+    environment:
+      cluster.name: my-elk-cluster
+    volumes:
+      - ./elk-config/logstash/config/pipelines:/usr/share/logstash/config/pipelines
+#      - ./elk-config/logstash/config/logstash.yml:/usr/share/logstash/config/
+      - ./elk-config/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+
+  kibana:
+    image: kibana:7.17.2
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      cluster.name: my-elk-cluster
+#      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    volumes:
+      - ./elk-config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - elk
+    depends_on:
+      - logstash
+
+
+networks:
+  elk:
+    driver: bridge
