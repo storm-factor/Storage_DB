@@ -1,4 +1,4 @@
-7# «ELK» - Pirogov Anton
+# «ELK» - Pirogov Anton
 
 ###     Задание 1 
 
@@ -10,12 +10,9 @@
 
 ###     Задание 3
 
-1. Как логи собрать в с nginx в logstash, не совсем понимаю. Как направить логи с nginx который стоит на хосте, в logstash который поднят в docker. 
-   В nginx.conf сделана такая запись - access_log syslog:server=logstash:5140, Как он будет направлять туда логи если nginx не знает что такое logstash
-   Возможно оно будет работать если прописать там ip контейнера, но это бред и почему высвечивается данное сообщение:
+![ex3](./screenshots/ex3.png)
 
-![ex3-1](./screenshots/qw1.png)
-![ex3-2](./screenshots/qw2.png)
-![ex3-3](./screenshots/qw3.png)
-![ex3-4](./screenshots/qw4.png)
-[compose.yml](./files/compose.yml)
+###     Задание 4
+
+![ex4](./screenshots/ex4.png)
+
